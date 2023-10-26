@@ -1,12 +1,20 @@
 import express from "express"
-import 'dotenv/config'
+import dotenv from "dotenv"
 import db from "./utils/db.js"
+import revenueExpreseRouter from "./apps/revenueExpense.js";
+
+dotenv.config();
 
 async function init() {
     const app = express()
     const port = process.env.PORT
     await db()
 
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: true }))
+
+    app.use("/revenue-expense", revenueExpreseRouter)
+    
     app.get("/", (req, res) => {
         res.send(`Hello world!`)
     })
