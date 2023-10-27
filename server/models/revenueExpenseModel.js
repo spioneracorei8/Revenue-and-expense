@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema
 
 const revenueExpenseSchema = new Schema({
-    user_id: Number,
+    // user_id: Number,
     date: Date,
     description: String,
     revenues: Number,
