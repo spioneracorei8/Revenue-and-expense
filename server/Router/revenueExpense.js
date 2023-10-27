@@ -7,15 +7,18 @@ const revenueExpenseRouter = Router()
 // Get all revenue expense and query data
 revenueExpenseRouter.get("/", async (req, res) => {
     const date = req.query.date
-    const description = req.query.description
-
+    const revenue = req.query.revenues
+    const expense = req.query.expenses
     const query = {}
-
+    console.log(typeof revenue);
     if (date) {
         query.date = new RegExp(`^${date}-`)
     }
-    if (description) {
-        query.description = description
+    if (revenue) {
+        query.revenues = { $ne: revenue }
+    }
+    if (expense) {
+        query.expenses = { $ne: expense }
     }
     try {
 
@@ -100,7 +103,7 @@ revenueExpenseRouter.post("/", async (req, res) => {
         })
         await revenueExpense.save()
         return res.status(200).json({
-            "message": "Saving revenue and expense successfully"
+            "message": "Saved revenue and expense successfully"
         })
     } catch (error) {
         return res.status(500).json({
