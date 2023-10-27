@@ -10,7 +10,7 @@ revenueExpenseRouter.get("/", async (req, res) => {
     const revenue = req.query.revenues
     const expense = req.query.expenses
     const query = {}
-    console.log(typeof revenue);
+    
     if (date) {
         query.date = new RegExp(`^${date}-`)
     }
