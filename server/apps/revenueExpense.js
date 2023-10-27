@@ -6,10 +6,20 @@ const revenueExpenseRouter = Router()
 
 // Get all revenue expense and query data
 revenueExpenseRouter.get("/", async (req, res) => {
-  
+    const date = req.query.date
+    const description = req.query.description
+
+    const query = {}
+
+    if (date) {
+        query.date = new RegExp(`^${date}-`)
+    }
+    if (description) {
+        query.description = description
+    }
     try {
 
-        const revenueExpenseAllData = await RevenueExpense.find({})
+        const revenueExpenseAllData = await RevenueExpense.find(query)
 
         return res.status(200).json({
             "data": revenueExpenseAllData
