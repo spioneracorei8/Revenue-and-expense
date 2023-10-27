@@ -23,6 +23,7 @@ revenueExpenseRouter.post("/", async (req, res) => {
 
     try {
         const revenueExpense = await RevenueExpense({
+            // user_id: 0,
             description,
             revenues,
             expenses,
@@ -40,5 +41,21 @@ revenueExpenseRouter.post("/", async (req, res) => {
     }
 })
 
+
+revenueExpenseRouter.delete("/:id", async (req, res) => {
+    const revenueExpenseId = new mongoose.Types.ObjectId(req.params.id)
+    console.log(revenueExpenseId);
+    try {
+        await RevenueExpense.deleteOne({ _id: revenueExpenseId })
+        return res.status(200).json({
+            "message": `Deleted successfully`
+        })
+    } catch (error) {
+        return res.status(500).json({
+            "message": "An error occurred while deleting data",
+            "error": error
+        })
+    }
+})
 
 export default revenueExpenseRouter
