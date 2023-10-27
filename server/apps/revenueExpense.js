@@ -4,32 +4,15 @@ import mongoose from "mongoose";
 
 const revenueExpenseRouter = Router()
 
-// Get all revenue expense and balance data
+// Get all revenue expense and query data
 revenueExpenseRouter.get("/", async (req, res) => {
+  
     try {
-        const revenueExpenseAllData = await RevenueExpense.find({})
-        const balanceRevenueExpense = await RevenueExpense.aggregate([
-            {
-                $group: {
-                    _id: null,
-                    totalRevenue: { $sum: "$revenues" },
-                    totalExpense: { $sum: "$expenses" }
-                }
-            },
-            {
-                $project: {
-                    _id: 0,
-                    totalRevenue: 1,
-                    totalExpense: 1,
-                    balance: { $subtract: ["$totalRevenue", "$totalExpense"] }
-                }
-            }
-        ])
 
-        let revenueExpenseBalanceData = [...revenueExpenseAllData, ...balanceRevenueExpense]
+        const revenueExpenseAllData = await RevenueExpense.find({})
 
         return res.status(200).json({
-            "data": revenueExpenseBalanceData
+            "data": revenueExpenseAllData
         })
     } catch (error) {
         return res.status(500).json({
@@ -41,7 +24,6 @@ revenueExpenseRouter.get("/", async (req, res) => {
 
 // Get balance data
 revenueExpenseRouter.get("/balance", async (req, res) => {
-
     try {
         const balanceRevenueExpense = await RevenueExpense.aggregate([
             {
@@ -54,8 +36,6 @@ revenueExpenseRouter.get("/balance", async (req, res) => {
             {
                 $project: {
                     _id: 0,
-                    totalRevenue: 1,
-                    totalExpense: 1,
                     balance: { $subtract: ["$totalRevenue", "$totalExpense"] }
                 }
             }
@@ -69,17 +49,44 @@ revenueExpenseRouter.get("/balance", async (req, res) => {
     }
 })
 
+// Get grand total data
+revenueExpenseRouter.get("/grand-total", async (req, res) => {
+    try {
+        const grandTotalRevenueExpense = await RevenueExpense.aggregate([
+            {
+                $group: {
+                    _id: null,
+                    totalRevenue: { $sum: "$revenues" },
+                    totalExpense: { $sum: "$expenses" }
+                }
+            },
+            {
+                $project: {
+                    _id: 0
+                }
+            }
+
+        ])
+        return res.status(200).json(grandTotalRevenueExpense[0])
+    } catch (error) {
+        return res.status(500).json({
+            "message": "An error occurred while fetching data",
+            "error": error
+        })
+    }
+})
+
+
 // Add new revenue and expense
 revenueExpenseRouter.post("/", async (req, res) => {
-    const { description, revenues, expenses } = req.body
+    const { description, revenues, expenses, date } = req.body
 
     try {
         const revenueExpense = await RevenueExpense({
-            // user_id: 0,
             description,
             revenues,
             expenses,
-            date: new Date(),
+            date,
         })
         await revenueExpense.save()
         return res.status(200).json({
