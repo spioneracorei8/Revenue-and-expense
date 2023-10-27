@@ -18,6 +18,7 @@ revenueExpenseRouter.get("/", async (req, res) => {
     }
 })
 
+
 revenueExpenseRouter.post("/", async (req, res) => {
     const { description, revenues, expenses } = req.body
 
@@ -44,11 +45,10 @@ revenueExpenseRouter.post("/", async (req, res) => {
 
 revenueExpenseRouter.delete("/:id", async (req, res) => {
     const revenueExpenseId = new mongoose.Types.ObjectId(req.params.id)
-    console.log(revenueExpenseId);
     try {
-        await RevenueExpense.deleteOne({ _id: revenueExpenseId })
+        const revenueExpenseData = await RevenueExpense.findByIdAndDelete({ _id: revenueExpenseId })
         return res.status(200).json({
-            "message": `Deleted successfully`
+            "message": `Deleted ${revenueExpenseData.description} description in id ${revenueExpenseData._id} successfully`
         })
     } catch (error) {
         return res.status(500).json({
