@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 
 const revenueExpenseSchema = new Schema({
     description: String,
-    revenues: Number,
-    expenses: Number,
+    type: String,
+    amount: Number,
     date: String,
 })
 

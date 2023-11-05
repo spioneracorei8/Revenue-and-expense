@@ -1,0 +1,12 @@
+.container-revenue-expense-data{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.revenue-expense-data {
+    border: 1px solid black;
+    margin: 50px;
+}

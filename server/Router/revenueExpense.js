@@ -10,7 +10,7 @@ revenueExpenseRouter.get("/", async (req, res) => {
     const revenue = req.query.revenues
     const expense = req.query.expenses
     const query = {}
-    
+
     if (date) {
         query.date = new RegExp(`^${date}-`)
     }
@@ -92,13 +92,13 @@ revenueExpenseRouter.get("/grand-total", async (req, res) => {
 
 // Add new revenue and expense
 revenueExpenseRouter.post("/", async (req, res) => {
-    const { description, revenues, expenses, date } = req.body
+    const { description, type, amount, date } = req.body
 
     try {
         const revenueExpense = await RevenueExpense({
             description,
-            revenues,
-            expenses,
+            type,
+            amount,
             date,
         })
         await revenueExpense.save()

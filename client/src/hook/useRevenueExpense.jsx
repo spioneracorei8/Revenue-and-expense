@@ -37,11 +37,26 @@ const useRevenueExpnese = () => {
         }
     }
 
+    const addNewRevenueExpense = async (data) => {
+        try {
+            setIsError(false)
+            setIsLoading(true)
+            await axios.post(`http://localhost:4001/revenue-expense/`, data)
+            setIsLoading(false)
+
+        } catch (error) {
+            setIsLoading(false)
+            setIsError(true)
+            console.log(error);
+        }
+    }
+
 
     return {
         revenueExpenseData,
         setRevenueExpenseData,
         removeRevenueExpenseHistory,
+        addNewRevenueExpense,
     }
 
 }
