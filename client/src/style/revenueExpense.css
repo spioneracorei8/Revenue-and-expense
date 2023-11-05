@@ -1,0 +1,50 @@
+.container-homepage {
+    width: 100vw;
+    height: 100vh;
+}
+
+.heading-rev-exp {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: lightsalmon;
+    padding-top: 2rem;
+}
+
+.form-container-rev-exp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.container-rev-exp {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-rev-exp select {
+    font-style: normal;
+    font-weight: 500;
+    color: black;
+    font-size: 1rem;
+}
+
+.container-descritpion,
+.container-amount,
+.container-date {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-descritpion h3,
+.container-amount h3,
+.container-date h3 {
+    min-width: 100px;
+}
+
+.container-amount input::-webkit-inner-spin-button,
+.container-amount input::-webkit-outer-spin-button {
+    appearance: none;
+}
