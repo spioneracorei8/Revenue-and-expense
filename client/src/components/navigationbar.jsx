@@ -8,16 +8,18 @@ const Navigationbar = () => {
             <ul className='menu-navigationbar'>
                 <li>
                     <Link to={"/"}>
-                        All Revenue-Expense
+                        Revenue-expense history
                     </Link>
                 </li>
                 <li>
                     <Link to={"/form-revenue-expense"}>
-                        Add new Revenue-Expense
+                        Add new revenue-expense
                     </Link>
                 </li>
                 <li>
-                    Delete Revenue-Expense
+                    <Link to={"/remove-revenue-expense"}>
+                        Remove revenue-rxpense history
+                    </Link>
                 </li>
             </ul>
         </div>

@@ -7,9 +7,7 @@ const RevenueExpenseFormPage = () => {
     const [descritpion, setDescription] = useState("")
     const [amount, setAmount] = useState(0)
     const [date, setDate] = useState("")
-
-
-
+    
 
     return (
         <>

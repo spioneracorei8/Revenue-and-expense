@@ -1,5 +1,6 @@
 import express from "express"
 import dotenv from "dotenv"
+import cors from "cors"
 import db from "./utils/db.js"
 import revenueExpreseRouter from "./Router/revenueExpense.js";
 
@@ -10,6 +11,7 @@ async function init() {
     const port = process.env.PORT
     await db()
 
+    app.use(cors())
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
 

@@ -4,6 +4,9 @@
 ```bash
 npm install react-router-dom
 ```
+```bash
+npm install axios
+```
 
 ## Installation server side
 ```bash
@@ -17,4 +20,7 @@ npm install dotenv
 ```
 ```bash
 npm install mongoose
+```
+```bash
+npm install cors
 ```
