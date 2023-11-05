@@ -1,6 +1,11 @@
 # Revenue-and-expense
 
-## Installation 
+## Installation client side
+```bash
+npm install react-router-dom
+```
+
+## Installation server side
 ```bash
 npm install express
 ```
