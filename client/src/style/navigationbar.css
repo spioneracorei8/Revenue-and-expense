@@ -1,3 +1,22 @@
 .container-navigationbar {
-    
+    padding: 10px;
+
+}
+
+.menu-navigationbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-navigationbar li {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: normal;
+    list-style: none;
+}
+
+.menu-navigationbar li a {
+    color: black;
+    text-decoration: none;
 }
