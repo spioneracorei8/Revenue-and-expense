@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import "../style/revenueExpense.css"
+import Navigationbar from '../components/navigationbar'
 
-const RevenueExpensePage = () => {
+const RevenueExpenseFormPage = () => {
     const [type, setType] = useState("revenue")
     const [descritpion, setDescription] = useState("")
     const [amount, setAmount] = useState(0)
@@ -9,13 +10,13 @@ const RevenueExpensePage = () => {
 
 
 
-    
+
     return (
         <>
+            <Navigationbar />
+
             <div className='container-homepage'>
-                <h1 className='heading-rev-exp'>
-                    Revenue - Expense
-                </h1>
+
                 <form className='form-container-rev-exp' onSubmit={""}>
                     <div className='container-rev-exp'>
                         <select
@@ -65,4 +66,4 @@ const RevenueExpensePage = () => {
     )
 }
 
-export default RevenueExpensePage
+export default RevenueExpenseFormPage
