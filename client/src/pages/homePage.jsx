@@ -5,7 +5,7 @@ import useRevenueExpnese from '../hook/useRevenueExpense'
 import "../style/homePage.css"
 
 const HomePage = () => {
-    const { revenueExpenseData } = useRevenueExpnese()
+    const { revenueExpenseData, balance, totalRevenue, totalExpense } = useRevenueExpnese()
     return (
         <>
             <Navigationbar />
@@ -22,6 +22,17 @@ const HomePage = () => {
                         )
                     })
                 }
+                <div className='container-money-summary'>
+                    <h3>
+                        Total Revenue: <span>{totalRevenue}</span>
+                    </h3>
+                    <h3>
+                        Total Expense: <span>{totalExpense}</span>
+                    </h3>
+                    <h3>
+                        Balance: <span>{balance}</span>
+                    </h3>
+                </div>
             </div>
         </>
     )

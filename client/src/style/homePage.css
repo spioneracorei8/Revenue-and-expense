@@ -1,4 +1,4 @@
-.container-revenue-expense-data{
+.container-revenue-expense-data {
     width: auto;
     height: auto;
     display: flex;
@@ -7,8 +7,34 @@
 }
 
 .revenue-expense-data {
-    border: 1px solid black;
+    border: 1px solid #8EDFFF;
     margin: 50px;
     padding: 20px;
     border-radius: 20px;
+    line-height: 1.6rem;
+}
+
+.revenue-expense-data h1,
+.revenue-expense-data h2 {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.5rem;
+    color: #28666e;
+}
+
+.revenue-expense-data h3,
+.revenue-expense-data h4 {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 1.2rem;
+    color: #28666e;
+}
+
+.container-money-summary {
+    position: fixed;
+    border: 1px solid black;
+    right: 2rem;
+    top: 5rem;
+    padding: 20px;
+    border-radius: 15px;
 }
