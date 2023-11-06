@@ -22,7 +22,7 @@ async function init() {
     })
 
     app.get("*", (req, res) => {
-        res.send(`Not found!`)
+        res.status(404).send(`Not found!`)
     })
 
     app.listen(port, () => {

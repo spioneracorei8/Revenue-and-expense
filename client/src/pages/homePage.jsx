@@ -6,7 +6,6 @@ import "../style/homePage.css"
 
 const HomePage = () => {
     const { revenueExpenseData } = useRevenueExpnese()
-    console.log(revenueExpenseData);
     return (
         <>
             <Navigationbar />
@@ -14,10 +13,10 @@ const HomePage = () => {
                 {
                     revenueExpenseData.map((item) => {
                         return (
-                            <div className='revenue-expense-data'>
-                                <h1>{item.description}</h1>
+                            <div className='revenue-expense-data' key={item._id}>
+                                <h1>Description: {item.description}</h1>
                                 <h2>Type of money: {item.type}</h2>
-                                <h3>{item.amount}</h3>
+                                <h3>Amount: {item.amount}</h3>
                                 <h4>{item.date}</h4>
                             </div>
                         )
