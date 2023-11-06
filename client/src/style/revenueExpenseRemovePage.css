@@ -6,3 +6,10 @@
     gap: 30px;
     padding: 20px;
 }
+
+.revenue-expense-data-remove {
+    border: 1px solid black;
+    margin: 50px;
+    padding: 20px;
+    border-radius: 20px;
+}

@@ -7,18 +7,14 @@ const revenueExpenseRouter = Router()
 // Get all revenue expense and query data
 revenueExpenseRouter.get("/", async (req, res) => {
     const date = req.query.date
-    const revenue = req.query.revenues
-    const expense = req.query.expenses
+    const type = req.query.type
     const query = {}
 
     if (date) {
-        query.date = new RegExp(`^${date}-`)
+        query.date = { $regex: new RegExp(`-${date}$`) }
     }
-    if (revenue) {
-        query.revenues = { $ne: revenue }
-    }
-    if (expense) {
-        query.expenses = { $ne: expense }
+    if (type) {
+        query.type = type
     }
     try {
 
@@ -42,9 +38,9 @@ revenueExpenseRouter.get("/balance", async (req, res) => {
             {
                 $group: {
                     _id: null,
-                    totalRevenue: { $sum: "$revenues" },
-                    totalExpense: { $sum: "$expenses" }
-                }
+                    totalRevenue: { $sum: { $cond: [{ $eq: ["$type", "revenue"] }, "$amount", 0] } },
+                    totalExpense: { $sum: { $cond: [{ $eq: ["$type", "expense"] }, "$amount", 0] } }
+                },
             },
             {
                 $project: {
@@ -69,16 +65,13 @@ revenueExpenseRouter.get("/grand-total", async (req, res) => {
             {
                 $group: {
                     _id: null,
-                    totalRevenue: { $sum: "$revenues" },
-                    totalExpense: { $sum: "$expenses" }
+                    totalRevenue: { $sum: { $cond: [{ $eq: ["$type", "revenue"] }, "$amount", 0] } },
+                    totalExpense: { $sum: { $cond: [{ $eq: ["$type", "expense"] }, "$amount", 0] } }
                 }
             },
             {
-                $project: {
-                    _id: 0
-                }
+                $project: { _id: 0 }
             }
-
         ])
         return res.status(200).json(grandTotalRevenueExpense[0])
     } catch (error) {

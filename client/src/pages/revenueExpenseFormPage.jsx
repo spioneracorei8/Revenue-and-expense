@@ -12,8 +12,7 @@ const RevenueExpenseFormPage = () => {
     const [amount, setAmount] = useState(0)
     const [date, setDate] = useState("")
 
-    const handleAddNewRevenueExpense = (event) => {
-        event.preventDefault()
+    const handleAddNewRevenueExpense = () => {
         const data = {
             type,
             description,
@@ -21,13 +20,14 @@ const RevenueExpenseFormPage = () => {
             date
         }
         addNewRevenueExpense(data)
+        alert(`Saved revenue-expense success.`)
     }
 
     return (
         <>
             <Navigationbar />
 
-            <form className='form-container-rev-exp' onSubmit={(event) => handleAddNewRevenueExpense(event)}>
+            <form className='form-container-rev-exp' onSubmit={() => handleAddNewRevenueExpense()}>
                 <div className='container-rev-exp'>
                     <select
                         onChange={(event) => setType(event.target.value)}

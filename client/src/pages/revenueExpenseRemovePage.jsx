@@ -22,8 +22,10 @@ const RevenueExpenseRemovePage = () => {
                 {
                     revenueExpenseData.map((item) => {
                         return (
-                            <div>
-                                <p>{item.description}</p>
+                            <div className='revenue-expense-data-remove' key={item._id}>
+                                <p>Description: {item.description}</p>
+                                <p>Amount: {item.amount}</p>
+                                <p>Type of money: {item.type}</p>
                                 <button onClick={() => handleRemoveRevenueExpense(item._id)}>Delete</button>
                             </div>
                         )
